@@ -10,6 +10,7 @@ import { AuthProvider } from "./hooks/useAuth";
 import Navbar from "./components/Navbar";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
+import Dashboard from "./pages/Dashboard";
 import Rides from "./pages/Rides";
 import CreateRide from "./pages/CreateRide";
 import RideDetails from "./pages/RideDetails";
@@ -29,6 +30,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/auth" element={<Auth />} />
+                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/rides" element={<Rides />} />
                 <Route path="/rides/:id" element={<RideDetails />} />
                 <Route path="/create-ride" element={<CreateRide />} />

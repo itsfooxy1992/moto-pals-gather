@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
-import { MapPin, Users, Plus, LogIn, LogOut } from "lucide-react";
+import { MapPin, Users, Plus, LogIn, LogOut, User } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
 const Navbar = () => {
@@ -29,6 +29,12 @@ const Navbar = () => {
                 <Link to="/create-ride" className="flex items-center space-x-1">
                   <Plus size={18} />
                   <span>Create Ride</span>
+                </Link>
+              </Button>
+              <Button asChild variant="ghost" size="sm">
+                <Link to="/dashboard" className="flex items-center space-x-1">
+                  <User size={18} />
+                  <span>Dashboard</span>
                 </Link>
               </Button>
               <Button variant="ghost" size="sm" onClick={signOut}>
