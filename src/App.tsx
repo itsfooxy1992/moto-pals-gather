@@ -11,6 +11,9 @@ import Navbar from "./components/Navbar";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Rides from "./pages/Rides";
+import CreateRide from "./pages/CreateRide";
+import RideDetails from "./pages/RideDetails";
+import Riders from "./pages/Riders";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +30,9 @@ const App = () => (
                 <Route path="/" element={<Index />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/rides" element={<Rides />} />
+                <Route path="/rides/:id" element={<RideDetails />} />
+                <Route path="/create-ride" element={<CreateRide />} />
+                <Route path="/riders" element={<Riders />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </AnimatePresence>
