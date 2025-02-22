@@ -16,24 +16,36 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 
+type Difficulty = "beginner" | "intermediate" | "advanced";
+
+type FormData = {
+  title: string;
+  description: string;
+  location: string;
+  date: string;
+  difficulty: Difficulty | "";
+  totalSpots: string;
+  image: File | null;
+};
+
 const CreateRide = () => {
   const { session } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     title: "",
     description: "",
     location: "",
     date: "",
     difficulty: "",
     totalSpots: "",
-    image: null as File | null,
+    image: null,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!session?.user) return;
+    if (!session?.user || !formData.difficulty) return;
     
     setIsLoading(true);
     try {
@@ -61,7 +73,7 @@ const CreateRide = () => {
         description: formData.description,
         location: formData.location,
         date: new Date(formData.date).toISOString(),
-        difficulty: formData.difficulty,
+        difficulty: formData.difficulty as Difficulty, // Type assertion is safe here because we check for empty string above
         total_spots: parseInt(formData.totalSpots),
         creator_id: session.user.id,
         image_url: imageUrl,
@@ -156,7 +168,7 @@ const CreateRide = () => {
               <label htmlFor="difficulty" className="text-sm font-medium">Difficulty</label>
               <Select
                 value={formData.difficulty}
-                onValueChange={(value) => setFormData(prev => ({ ...prev, difficulty: value }))}
+                onValueChange={(value: Difficulty) => setFormData(prev => ({ ...prev, difficulty: value }))}
                 required
               >
                 <SelectTrigger>
