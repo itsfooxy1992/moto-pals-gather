@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import Navbar from "./components/Navbar";
 import Index from "./pages/Index";
+import Rides from "./pages/Rides";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ const App = () => (
           <AnimatePresence mode="wait">
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/rides" element={<Rides />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>
